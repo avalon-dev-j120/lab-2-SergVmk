@@ -1,8 +1,12 @@
 package ru.avalon.java.j20.labs.tasks;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import ru.avalon.java.j20.labs.Task;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -17,7 +21,7 @@ public class Task4 implements Task {
      */
     @Override
     public void run() throws IOException {
-        Properties properties = read("resources/database");
+        Properties properties = read("C:\\sk\\Laba2\\lab-2-SergVmk\\src\\resources\\database.properties");
 
         /*
          * TODO(Студент): Выполнить задание №4
@@ -35,7 +39,36 @@ public class Task4 implements Task {
      * @param path путь к конфигурации
      * @return новый экземпляр типа {@link Properties}
      */
-    private Properties read(String path) {
-        throw new UnsupportedOperationException("Not implement yet!");
+    private Properties read(String path) //throws FileNotFoundException,IOException 
+    {
+        Properties prop = new Properties();
+        FileReader reader = null; 
+        try
+        {
+            reader = new FileReader(path);
+            prop.load(reader);
+            
+        }
+        catch(FileNotFoundException e)
+        {
+          System.out.println("Error FileNotFound "+e.toString());
+        }
+        catch(IOException e)
+        {
+          System.out.println("Error IOException "+e.toString());
+        }
+        finally
+        {
+            try
+            {
+                if (reader != null)
+                reader.close();
+            }
+            catch(IOException e)
+            {
+                System.out.println("Error IOException "+e.toString());
+            }
+            return prop;
+        }
     }
 }

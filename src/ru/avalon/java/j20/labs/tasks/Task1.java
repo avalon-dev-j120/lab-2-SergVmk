@@ -1,9 +1,18 @@
 package ru.avalon.java.j20.labs.tasks;
 
+import java.io.ByteArrayOutputStream;
 import ru.avalon.java.j20.labs.Task;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 
 /**
  * Задание №1
@@ -18,10 +27,13 @@ public class Task1 implements Task {
      */
     @Override
     public void run() throws IOException {
-        File input = new File("assets/countries.txt");
-        File output = new File("countries_binary_mode_output.txt");
+        File input = new File("C:\\sk\\Laba2\\lab-2-SergVmk\\assets\\countries.txt");
+        File output = new File("C:\\sk\\Laba2\\lab-2-SergVmk\\assets\\countries_binary_mode_output.txt");
         String text = read(input);
         write(output, text);
+        
+
+    
 
         /*
          * TODO(Студент): Выполнить задание №1
@@ -54,7 +66,31 @@ public class Task1 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private String read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
+        String text = "";
+        InputStream input = null;
+        byte[] bytes = null;
+        ByteArrayOutputStream output = new ByteArrayOutputStream(50);
+        try
+        {
+            input = new FileInputStream(file); 
+            //Reader reader = new InputStreamReader(input); Не понятно зачем он, но в задании есть
+            byte[] buffer = new byte[50];
+            int len;
+            while ((len = input.read(buffer)) != -1) {
+                output.write(buffer, 0, len);
+            }
+            bytes = output.toByteArray();
+        }
+        finally
+        {
+            if (input != null)
+                input.close();
+            if(output != null)
+                output.close();
+            return new String(bytes);
+            
+        }
+        //throw new UnsupportedOperationException("Not implement yet!");
     }
 
     /**
@@ -66,6 +102,21 @@ public class Task1 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, String text) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        OutputStream output  = null;
+        byte[] bytes = null;
+        ByteArrayOutputStream bynoutput = new ByteArrayOutputStream(50);
+        try
+        {
+            output = new FileOutputStream(file);
+            bytes = text.getBytes();
+            output.write(bytes);
+        }
+        finally
+        {
+            if (output != null)
+                output.close();
+            
+        }
+        
     }
 }
