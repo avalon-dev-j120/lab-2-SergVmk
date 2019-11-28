@@ -25,8 +25,8 @@ public class Task3 implements Task {
      */
     @Override
     public void run() throws IOException {
-        File input = new File("C:\\sk\\Laba2\\lab-2-SergVmk\\assets\\countries.txt");
-        File output = new File("C:\\sk\\Laba2\\lab-2-SergVmk\\assets\\countries_buffered_mode_outputtask3.txt");
+        File input = new File("assets/countries.txt");
+        File output = new File("assets/countries_buffered_mode_outputtask3.txt");
         Collection<String> lines = read(input);
         write(output, lines);
 

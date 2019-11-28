@@ -23,12 +23,12 @@ public class Task5 implements Task {
      */
     @Override
     public void run() throws IOException {
-       // ResourceBundle res = read("C:\\sk\\Laba2\\lab-2-SergVmk\\src\\resources\\strings\\titles.properties");
-     //   ResourceBundle resru = read("C:\\sk\\Laba2\\lab-2-SergVmk\\src\\resources\\strings\\titles_ru.properties");
+      
         
-        Locale locale = Locale.FRANCE;
-        ResourceBundle res2 = read("C:\\sk\\Laba2\\lab-2-SergVmk\\src\\resources\\strings\\titles.properties",locale);
-        ResourceBundle res2ru = read("C:\\sk\\Laba2\\lab-2-SergVmk\\src\\resources\\strings\\titles_ru.properties",locale);
+        
+        ResourceBundle res = read("resources/strings/titles");
+        Locale locale = new Locale("en");
+        ResourceBundle resen = read("resources/strings/titles",locale);
         
         
         /*
@@ -54,12 +54,8 @@ public class Task5 implements Task {
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path) {
-       FileReader reader = null; 
-       BufferedReader buffer = null; 
-       ResourceBundle res =  ResourceBundle.getBundle(path,Locale.CANADA);
-       
+       ResourceBundle res =  ResourceBundle.getBundle(path);
        return res;
-        
     }
 
     /**
@@ -69,8 +65,6 @@ public class Task5 implements Task {
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path, Locale locale) {
-       FileReader reader = null; 
-       BufferedReader buffer = null; 
        ResourceBundle res =  ResourceBundle.getBundle(path,locale);
        return res; 
     }

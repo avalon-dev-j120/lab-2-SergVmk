@@ -21,7 +21,7 @@ public class Task4 implements Task {
      */
     @Override
     public void run() throws IOException {
-        Properties properties = read("C:\\sk\\Laba2\\lab-2-SergVmk\\src\\resources\\database.properties");
+        Properties properties = read("src/resources/database");
 
         /*
          * TODO(Студент): Выполнить задание №4
