@@ -58,6 +58,9 @@ public class Country {
      * имеет неверный формат.
      */
     public static Country valueOf(String text) throws ParseException {
+        //Странно, н не дает обработать ParseException
+        //при добалении catch возникает ошибка
+        //exception ParseException is never thrown in body of corresponding try statement
         try
         {
             String[] splitstr = text.split(":"); 
