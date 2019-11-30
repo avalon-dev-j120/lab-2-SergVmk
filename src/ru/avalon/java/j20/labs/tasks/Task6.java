@@ -56,17 +56,15 @@ public class Task6 implements Task {
         BufferedReader buf = null;
         InputStreamReader input = null;
         FileInputStream finput = null;
-        
+        Collection<Country> buffer = new LinkedList<>();
         try
         {
             finput = new FileInputStream(file); 
             input = new InputStreamReader(finput);
             buf = new BufferedReader(input);
-            Collection<Country> buffer = new LinkedList<>();
             String line;
             while((line = buf.readLine()) != null) {
-                String[] splitstr = line.split(":"); 
-                buffer.add(new Country(splitstr[0],splitstr[1]));
+                buffer.add(Country.valueOf(line));
             }
             
         }
