@@ -1,11 +1,16 @@
 package ru.avalon.java.j20.labs.tasks;
 
+import java.io.BufferedReader;
 import ru.avalon.java.j20.labs.Task;
 import ru.avalon.java.j20.labs.models.Country;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  * Задание №6
@@ -48,6 +53,35 @@ public class Task6 implements Task {
      * @throws IOException в случае ошибки ввода-вывода.
      */
     private Collection<Country> read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
+        BufferedReader buf = null;
+        InputStreamReader input = null;
+        FileInputStream finput = null;
+        Collection<Country> buffer = new LinkedList<>();
+        try
+        {
+            finput = new FileInputStream(file); 
+            input = new InputStreamReader(finput);
+            buf = new BufferedReader(input);
+            String line;
+            while((line = buf.readLine()) != null) {
+                buffer.add(Country.valueOf(line));
+            }
+            
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error IOException "+e.toString());
+        }
+        finally
+        {
+            if (buf != null)
+                buf.close();
+            if (input != null)
+                input.close();
+            if (finput != null)
+                finput.close();
+            return Collections.unmodifiableCollection(buffer);
+        }
+     
     }
 }
